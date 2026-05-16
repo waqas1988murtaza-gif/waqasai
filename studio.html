@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ElevenChime TTS - Premium Creative Dashboard</title>
+    <title>Waqas AI Studio - Dashboard</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -29,7 +29,7 @@
             overflow: hidden;
         }
 
-        /* --- SIDEBAR DESIGN (1:1 ElevenChime) --- */
+        /* --- SIDEBAR DESIGN --- */
         .sidebar {
             width: 260px;
             background: var(--sidebar-bg);
@@ -44,7 +44,7 @@
 
         .brand {
             font-family: 'Outfit', sans-serif;
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 800;
             display: flex;
             align-items: center;
@@ -52,8 +52,9 @@
             padding-left: 8px;
             margin-bottom: 30px;
             letter-spacing: -0.5px;
+            color: #ffffff;
         }
-        .brand i { color: #cbd5e1; font-size: 24px; }
+        .brand i { color: var(--accent-red); font-size: 22px; }
 
         .menu-section-label {
             font-size: 11px;
@@ -118,7 +119,7 @@
         }
         .signout-btn:hover { background: var(--accent-red); color: white; }
 
-        /* --- MAIN CONTENT & REGULAR HEADER --- */
+        /* --- MAIN WORKSPACE --- */
         .workspace {
             flex-grow: 1;
             display: flex;
@@ -181,16 +182,16 @@
             box-sizing: border-box;
         }
 
-        /* TAB MANAGEMENT VISIBILITY */
+        /* TAB CONTROLS */
         .tab-content { display: none; }
-        .tab-content.active-tab { display: block; animation: fadeIn 0.3s ease; }
+        .tab-content.active-tab { display: block; animation: fadeIn 0.2s ease-out; }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(4px); }
+            from { opacity: 0; transform: translateY(2px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* --- UI COMPONENT LAYOUTS --- */
+        /* --- STUDIO COMPONENTS --- */
         .card-banner {
             background: linear-gradient(90deg, rgba(239,68,68,0.05) 0%, rgba(15,23,42,0.4) 100%);
             border: 1px solid var(--border-color);
@@ -201,10 +202,9 @@
         .card-banner h2 { margin: 0 0 8px 0; font-size: 20px; display: flex; align-items: center; gap: 10px; }
         .card-banner p { margin: 0; color: var(--text-muted); font-size: 14px; }
 
-        /* Style grid view selector items */
         .style-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
             gap: 16px;
             margin-top: 20px;
             margin-bottom: 30px;
@@ -214,7 +214,7 @@
             background: #111a2e;
             border: 2px solid transparent;
             border-radius: 12px;
-            padding: 20px 10px;
+            padding: 24px 12px;
             text-align: center;
             cursor: pointer;
             transition: 0.2s;
@@ -222,46 +222,47 @@
         }
         .style-item:hover { border-color: rgba(255,255,255,0.1); background: #16223b; }
         .style-item.selected {
-            border-color: #3b82f6;
-            background: rgba(59, 130, 246, 0.05);
+            border-color: #ef4444;
+            background: rgba(239, 68, 68, 0.05);
         }
 
         .style-item i { font-size: 24px; margin-bottom: 12px; display: block; color: #64748b; }
-        .style-item.selected i { color: #3b82f6; }
+        .style-item.selected i { color: var(--accent-red); }
         .style-item .style-name { font-size: 13px; font-weight: 600; }
+        
         .style-badge {
             position: absolute; top: -8px; right: -4px;
             background: #f59e0b; color: #000; font-size: 9px; font-weight: 800;
             padding: 2px 6px; border-radius: 4px; text-transform: uppercase;
         }
 
-        /* Input Controls Setup */
         label { font-size: 13px; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 10px; }
         textarea, input[type="text"], select {
             width: 100%; background: var(--input-bg); border: 1px solid var(--border-color);
             border-radius: 8px; color: white; padding: 14px; box-sizing: border-box;
             margin-bottom: 25px; font-family: inherit; font-size: 14px; transition: 0.2s;
         }
-        textarea:focus, input[type="text"]:focus { border-color: #3b82f6; outline: none; }
+        textarea:focus, input[type="text"]:focus { border-color: var(--accent-red); outline: none; }
 
         .btn-action {
             background: #10b981; color: white; border: none; padding: 14px 28px;
             border-radius: 8px; font-weight: 600; font-size: 15px; cursor: pointer;
             display: inline-flex; align-items: center; gap: 8px; transition: 0.2s;
         }
-        .btn-action:hover { background: #059669; box-shadow: 0 4px 12px rgba(16,185,129,0.2); }
+        .btn-action:hover { background: #059669; }
 
-        /* Prompt Feed Layout */
+        /* Prompt Feed Visual Mockups */
         .prompt-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
             gap: 24px;
         }
         .prompt-card {
             background: #0f172a; border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden;
         }
         .prompt-img-box {
-            width: 100%; height: 260px; background: #1e293b; display: flex; align-items: center; justify-content: center; color: #475569; font-size: 40px; position: relative;
+            width: 100%; height: 200px; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); 
+            display: flex; align-items: center; justify-content: center; color: #475569; font-size: 40px;
         }
         .prompt-card-body { padding: 16px; }
         .engine-badge { background: rgba(139, 92, 246, 0.15); color: #a78bfa; font-size: 11px; padding: 4px 8px; border-radius: 4px; font-weight: 600; display: inline-block; margin-bottom: 10px; }
@@ -271,7 +272,7 @@
 
     <div class="sidebar">
         <div>
-            <div class="brand"><i class="fa-solid fa-bars-staggered"></i> ElevenChime TTS</div>
+            <div class="brand"><i class="fa-solid fa-wand-magic-sparkles"></i> Waqas AI Studio</div>
             
             <ul class="menu-list">
                 <li><a class="menu-link active" onclick="switchTab('dashboard-tab', 'Dashboard', this)"><i class="fa-solid fa-house"></i> Dashboard</a></li>
@@ -301,9 +302,9 @@
             <h1 class="page-title" id="navbar-dynamic-title">Dashboard</h1>
             <div class="top-nav-right">
                 <div class="coin-pill">
-                    <i class="fa-solid fa-database"></i> <span id="coin-count">4,328</span>
+                    <i class="fa-solid fa-database"></i> <span>4,328</span>
                 </div>
-                <i class="fa-solid fa-gear settings-gear" onclick="alert('Studio Settings Panel Coming Soon!')"></i>
+                <i class="fa-solid fa-gear settings-gear"></i>
             </div>
         </div>
 
@@ -317,7 +318,7 @@
             </div>
 
             <div id="orders-tab" class="tab-content">
-                <p style="color: var(--text-muted);">No active billing pipeline tracks or historical render requests found under this profile key.</p>
+                <p style="color: var(--text-muted);">No active billing pipeline tracks or historical render requests found.</p>
             </div>
 
             <div id="tts-tab" class="tab-content">
@@ -331,8 +332,8 @@
                     <option>English US Voice Node - Adam Premium Narrative</option>
                 </select>
                 <label>Input Text Prompt Buffer</label>
-                <textarea rows="5" placeholder="Yahan apna text likhein jisko professional voice mein synthesize karna hai..."></textarea>
-                <button class="btn-action" style="background:#ef4444;" onclick="alert('Synthesizing audio nodes...')"><i class="fa-solid fa-play"></i> Generate Voice Asset</button>
+                <textarea rows="5" placeholder="Yahan apna text likhein jisko professional voice mein convert karna hai..."></textarea>
+                <button class="btn-action" style="background:#ef4444;"><i class="fa-solid fa-play"></i> Generate Voice Asset</button>
             </div>
 
             <div id="voices-tab" class="tab-content">
@@ -342,7 +343,7 @@
             <div id="image-tab" class="tab-content">
                 <div class="card-banner" style="background: linear-gradient(90deg, rgba(16,185,129,0.08) 0%, transparent 100%);">
                     <h2><i class="fa-solid fa-bolt" style="color:#10b981;"></i> Ultra Fast Image Generation Engine</h2>
-                    <p>Generates high fidelity creative visual matrices in ~5 seconds using decentralized structural workers.</p>
+                    <p>Generates high fidelity creative visual matrices using decentralized structural workers.</p>
                 </div>
 
                 <label>Select an AI Style Preset</label>
@@ -356,7 +357,7 @@
                         <div class="style-name">Z Image Turbo</div>
                     </div>
                     <div class="style-item" onclick="selectStyle(this)">
-                        <i class="fa-solid fa-运营"></i>
+                        <i class="fa-solid fa-bolt-lightning"></i>
                         <div class="style-name">Nano Banana</div>
                     </div>
                     <div class="style-item" onclick="selectStyle(this)">
@@ -368,7 +369,7 @@
 
                 <label>Image Render Parameter Description</label>
                 <input type="text" placeholder="A flat-lay (top-down) shot. A perfume bottle resting on black rocks...">
-                <button class="btn-action" onclick="alert('Rendering graphics layout matrices...')"><i class="fa-solid fa-sparkles"></i> Render Creative Asset</button>
+                <button class="btn-action"><i class="fa-solid fa-sparkles"></i> Render Creative Asset</button>
             </div>
 
             <div id="tools-tab" class="tab-content">
@@ -378,7 +379,7 @@
             <div id="trending-tab" class="tab-content">
                 <div class="card-banner" style="background: linear-gradient(90deg, rgba(139,92,246,0.08) 0%, transparent 100%);">
                     <h2><i class="fa-solid fa-fire" style="color:#a78bfa;"></i> Trending Open-Source Prompts</h2>
-                    <p>Explore reverse-engineered high performing prompting frameworks extracted by the global creator pool.</p>
+                    <p>Explore reverse-engineered high performing prompting frameworks.</p>
                 </div>
 
                 <div class="prompt-grid">
@@ -386,14 +387,14 @@
                         <div class="prompt-img-box"><i class="fa-solid fa-mug-hot"></i></div>
                         <div class="prompt-card-body">
                             <span class="engine-badge">DALL-E 3</span>
-                            <p style="font-size:13px; margin:0; color:#cbd5e1; font-style:italic;">"A beautiful desi dhabba layout with traditional elements, morning cinematic lighting, 8k render..."</p>
+                            <p style="font-size:13px; margin:0; color:#cbd5e1; font-style:italic;">"A beautiful desi dhabba layout with traditional elements, morning cinematic lighting..."</p>
                         </div>
                     </div>
                     <div class="prompt-card">
                         <div class="prompt-img-box"><i class="fa-solid fa-shirt"></i></div>
                         <div class="prompt-card-body">
                             <span class="engine-badge" style="background:rgba(6,182,212,0.15); color:#22d3ee;">FLUX Node</span>
-                            <p style="font-size:13px; margin:0; color:#cbd5e1; font-style:italic;">"A studio fashion editorial catalog mockup shot, realistic model textile folds, dramatic overhead loop side-glow..."</p>
+                            <p style="font-size:13px; margin:0; color:#cbd5e1; font-style:italic;">"A studio fashion editorial catalog mockup shot, realistic model textile folds..."</p>
                         </div>
                     </div>
                 </div>
@@ -408,23 +409,23 @@
 
     <script>
         function switchTab(tabId, titleText, element) {
-            // Hide all tab views
+            // 1. Saare tabs ko hide karo
             var contents = document.getElementsByClassName('tab-content');
             for (var i = 0; i < contents.length; i++) {
                 contents[i].classList.remove('active-tab');
             }
             
-            // Remove active classes from left menu nodes
+            // 2. Sidebar links se active state hatao
             var links = document.getElementsByClassName('menu-link');
             for (var j = 0; j < links.length; j++) {
                 links[j].classList.remove('active');
             }
 
-            // Mount active components
+            // 3. Target tab ko show karo aur link ko highlight karo
             document.getElementById(tabId).classList.add('active-tab');
             element.classList.add('active');
             
-            // Transform dynamic title
+            // 4. Main header text badlo
             document.getElementById('navbar-dynamic-title').innerText = titleText;
         }
 
@@ -436,3 +437,5 @@
             element.classList.add('selected');
         }
     </script>
+</body>
+</html>
