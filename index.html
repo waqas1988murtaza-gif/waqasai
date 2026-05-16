@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waqas AI Studio - The Ultimate AI Creative Suite</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --text-main: #ffffff;
+            --text-muted: #94a3b8;
+            --primary: #ef4444;
+            --primary-hover: #b91c1c;
+            --card-bg: rgba(30, 41, 59, 0.4);
+            --card-border: rgba(255, 255, 255, 0.08);
+        }
+        body { background-color: var(--bg-color); color: var(--text-main); font-family: 'Inter', sans-serif; margin: 0; padding: 0; overflow-x: hidden; }
+        .glow { position: absolute; width: 400px; height: 400px; background: radial-gradient(circle, rgba(239, 68, 68, 0.15) 0%, rgba(0,0,0,0) 70%); top: -100px; left: 50%; transform: translateX(-50%); z-index: -1; }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; border-bottom: 1px solid var(--card-border); backdrop-filter: blur(10px); background: rgba(11, 15, 25, 0.8); position: sticky; top: 0; z-index: 100; }
+        .logo { font-family: 'Outfit', sans-serif; font-size: 24px; font-weight: 800; color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 10px; }
+        .logo i { color: var(--primary); }
+        .btn { background: var(--primary); color: white; padding: 10px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; transition: 0.3s; display: inline-block; }
+        .btn:hover { background: var(--primary-hover); box-shadow: 0 0 20px rgba(239, 68, 68, 0.4); }
+        .hero { max-width: 800px; margin: 120px auto; text-align: center; padding: 0 20px; }
+        .hero h1 { font-family: 'Outfit', sans-serif; font-size: clamp(40px, 6vw, 64px); font-weight: 900; line-height: 1.1; margin-bottom: 20px; }
+        .text-gradient { background: linear-gradient(135deg, #ff7b7b, #ef4444); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero p { color: var(--text-muted); font-size: clamp(16px, 2vw, 20px); line-height: 1.6; margin-bottom: 40px; }
+        .btn-large { padding: 16px 40px; font-size: 18px; display: inline-flex; align-items: center; gap: 10px; }
+    </style>
+</head>
+<body>
+    <div class="glow"></div>
+    <header>
+        <a href="index.html" class="logo"><i class="fa-solid fa-wand-magic-sparkles"></i> Waqas AI Studio</a>
+        <a href="studio.html" class="btn">Dashboard</a>
+    </header>
+    <section class="hero">
+        <h1>The Ultimate <br><span class="text-gradient">AI Creative Suite</span></h1>
+        <p>Voice cloning, ultra-realistic text-to-speech, studio-quality image generation, and intelligent text humanization—all unified in one powerful platform by Waqas.</p>
+        <a href="studio.html" class="btn btn-large">Launch Studio <i class="fa-solid fa-arrow-right"></i></a>
+    </section>
+</body>
+</html>
