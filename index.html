@@ -2,10 +2,10 @@
 <html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Waqas AI Studio - The Ultimate AI Creative Suite</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -15,8 +15,13 @@
             --text-muted: #94a3b8;
             --primary: #ef4444; /* Premium Red Glow */
             --primary-hover: #b91c1c;
-            --card-bg: rgba(30, 41, 59, 0.5);
+            --card-bg: rgba(30, 41, 59, 0.4);
             --card-border: rgba(255, 255, 255, 0.08);
+            --card-hover-bg: rgba(30, 41, 59, 0.6);
+            --accent-green: #10b981;
+            --accent-cyan: #06b6d4;
+            --secondary: #8b5cf6;
+            --warn: #f59e0b;
         }
 
         body {
@@ -28,17 +33,17 @@
             overflow-x: hidden;
         }
 
-        /* Ambient Glow Effects (Background Light) */
-        .glow {
+        /* Ambient Glow Effects */
+        .ambient-glow {
             position: absolute;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(239, 68, 68, 0.15) 0%, rgba(0,0,0,0) 70%);
-            top: -100px;
-            left: 50%;
-            transform: translateX(-50%);
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(239, 68, 68, 0.12) 0%, rgba(0,0,0,0) 70%);
             z-index: -1;
+            filter: blur(40px);
         }
+        .glow-1 { top: -100px; left: 50%; transform: translateX(-50%); }
+        .glow-2 { top: 600px; left: -100px; background: radial-gradient(circle, rgba(139, 92, 246, 0.08) 0%, rgba(0,0,0,0) 70%); }
 
         /* Header / Navbar */
         header {
@@ -48,9 +53,13 @@
             padding: 20px 5%;
             border-bottom: 1px solid var(--card-border);
             backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(11, 15, 25, 0.8);
         }
 
-        .logo {
+        .brand-logo {
             font-family: 'Outfit', sans-serif;
             font-size: 24px;
             font-weight: 800;
@@ -61,9 +70,24 @@
             gap: 10px;
         }
 
-        .logo i {
-            color: var(--primary);
+        .brand-logo i { color: var(--primary); }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
         }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--text-main); }
 
         .btn {
             background: var(--primary);
@@ -73,6 +97,9 @@
             text-decoration: none;
             font-weight: 600;
             transition: 0.3s;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
         }
 
         .btn:hover {
@@ -80,10 +107,17 @@
             box-shadow: 0 0 20px rgba(239, 68, 68, 0.4);
         }
 
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--card-border);
+            color: var(--text-main);
+        }
+        .btn-outline:hover { background: rgba(255,255,255,0.05); box-shadow: none; }
+
         /* Hero Section */
         .hero {
-            max-width: 800px;
-            margin: 100px auto;
+            max-width: 900px;
+            margin: 120px auto 80px auto;
             text-align: center;
             padding: 0 20px;
         }
@@ -93,7 +127,7 @@
             font-size: clamp(40px, 6vw, 64px);
             font-weight: 900;
             line-height: 1.1;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .text-gradient {
@@ -107,6 +141,9 @@
             font-size: clamp(16px, 2vw, 20px);
             line-height: 1.6;
             margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .btn-large {
@@ -116,23 +153,114 @@
             align-items: center;
             gap: 10px;
         }
+
+        /* Features Section */
+        .features-section {
+            padding: 60px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+
+        .section-subtitle {
+            color: var(--text-muted);
+            text-align: center;
+            margin-bottom: 5px;
+            font-size: 16px;
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 50px;
+        }
+
+        .bento-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 30px;
+            transition: 0.3s;
+        }
+        .bento-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            background: var(--card-hover-bg);
+        }
+
+        .span-2 { grid-column: span 2; }
+
+        .bento-icon {
+            font-size: 28px;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .bento-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 22px;
+            margin: 0 0 10px 0;
+            font-weight: 700;
+        }
+
+        .bento-desc {
+            color: var(--text-muted);
+            font-size: 14px;
+            line-height: 1.6;
+            margin: 0;
+        }
     </style>
 </head>
 <body>
 
-    <div class="glow"></div>
+    <div class="ambient-glow glow-1"></div>
+    <div class="ambient-glow glow-2"></div>
 
     <header>
-        <a href="#" class="logo">
+        <a href="index.html" class="brand-logo">
             <i class="fa-solid fa-wand-magic-sparkles"></i> Waqas AI Studio
         </a>
-        <a href="#" class="btn">Dashboard</a>
+        <ul class="nav-links">
+            <li><a href="#features">Features</a></li>
+            <li><a href="dashboard.html">Studio</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+        </ul>
+        <div class="auth-buttons">
+            <a href="dashboard.html" class="btn">Dashboard</a>
+        </div>
     </header>
 
     <section class="hero">
         <h1>The Ultimate <br><span class="text-gradient">AI Creative Suite</span></h1>
         <p>Voice cloning, ultra-realistic text-to-speech, studio-quality image generation, and intelligent text humanization—all unified in one powerful platform by Waqas.</p>
-        <a href="#" class="btn btn-large">Launch Studio <i class="fa-solid fa-arrow-right"></i></a>
+        
+        <a href="dashboard.html" class="btn btn-large">Launch Studio <i class="fa-solid fa-arrow-right"></i></a>
+    </section>
+
+    <section class="features-section" id="features">
+        <h2 class="section-title">Everything you need to create.</h2>
+        <p class="section-subtitle">Stop paying for multiple subscriptions. We combined the best AI tools into a single dashboard.</p>
+        
+        <div class="bento-grid">
+            <div class="bento-card span-2">
+                <div class="bento-icon"><i class="fa-solid fa-microphone-lines"></i></div>
+                <h3 class="bento-title">Hyper-Realistic Voice Cloning</h3>
+                <p class="bento-desc">Upload a 60-second audio sample and generate a perfect digital clone of any voice. Use it with our advanced Text-to-Speech engine supporting multiple languages and emotional ranges.</p>
+            </div>
+            <div class="bento-card">
+                <div class="bento-icon"><i class="fa-solid fa-image" style="color: var(--accent-cyan);"></i></div>
+                <h3 class="bento-title">Studio Image Gen</h3>
+                <p class="bento-desc">Access Z Image Turbo and DeepAI directly. Generate stunning visuals instantly with over 100+ unique artistic styles.</p>
+            </div>
+        </div>
     </section>
 
     <script>
