@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Waqas AI Studio - Dashboard</title>
+    <title>Waqas AI Studio - Premium Dashboard</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -251,7 +251,6 @@
         }
         .btn-action:hover { background: #059669; }
 
-        /* Prompt Feed Visual Mockups */
         .prompt-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
@@ -409,23 +408,19 @@
 
     <script>
         function switchTab(tabId, titleText, element) {
-            // 1. Saare tabs ko hide karo
             var contents = document.getElementsByClassName('tab-content');
             for (var i = 0; i < contents.length; i++) {
                 contents[i].classList.remove('active-tab');
             }
             
-            // 2. Sidebar links se active state hatao
             var links = document.getElementsByClassName('menu-link');
             for (var j = 0; j < links.length; j++) {
                 links[j].classList.remove('active');
             }
 
-            // 3. Target tab ko show karo aur link ko highlight karo
             document.getElementById(tabId).classList.add('active-tab');
             element.classList.add('active');
             
-            // 4. Main header text badlo
             document.getElementById('navbar-dynamic-title').innerText = titleText;
         }
 
