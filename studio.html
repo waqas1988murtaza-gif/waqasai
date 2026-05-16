@@ -3,61 +3,436 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Waqas AI Studio - Dashboard</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <title>ElevenChime TTS - Premium Creative Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --bg-color: #0b0f19;
-            --sidebar-bg: #111827;
-            --card-bg: #1f2937;
-            --text-main: #ffffff;
+            --bg-color: #060b13;
+            --sidebar-bg: #0b111e;
+            --card-bg: #0f172a;
+            --accent-red: #ef4444;
+            --accent-red-hover: #dc2626;
+            --border-color: rgba(255, 255, 255, 0.06);
+            --text-main: #f8fafc;
             --text-muted: #94a3b8;
-            --primary: #ef4444;
-            --border: rgba(255, 255, 255, 0.08);
+            --input-bg: #020617;
         }
-        body { background-color: var(--bg-color); color: var(--text-main); font-family: 'Inter', sans-serif; margin: 0; display: flex; height: 100vh; overflow: hidden; }
-        .sidebar { width: 260px; background: var(--sidebar-bg); border-right: 1px solid var(--border); padding: 20px; display: flex; flex-direction: column; gap: 20px; }
-        .brand { font-family: 'Outfit', sans-serif; font-size: 22px; font-weight: 800; display: flex; align-items: center; gap: 10px; }
-        .brand i { color: var(--primary); }
-        .menu-items { display: flex; flex-direction: column; gap: 8px; list-style: none; padding: 0; margin: 20px 0 0 0; }
-        .menu-link { display: flex; align-items: center; gap: 12px; padding: 12px; color: var(--text-muted); text-decoration: none; border-radius: 8px; font-weight: 500; }
-        .menu-link.active { background: rgba(239, 68, 68, 0.1); color: var(--text-main); }
-        .main-content { flex-grow: 1; padding: 40px; overflow-y: auto; }
-        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
-        h1 { font-family: 'Outfit', sans-serif; margin: 0; }
-        .studio-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
-        .tool-box { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 25px; }
-        .tool-title { font-family: 'Outfit', sans-serif; font-size: 20px; font-weight: 600; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
-        textarea, input[type="text"] { width: 100%; background: rgba(0,0,0,0.3); border: 1px solid var(--border); border-radius: 8px; color: white; padding: 12px; box-sizing: border-box; margin-bottom: 15px; }
-        .btn { background: var(--primary); color: white; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-weight: 600; width: 100%; }
-        select { width: 100%; background: rgba(0,0,0,0.3); color: white; border: 1px solid var(--border); padding: 12px; border-radius: 8px; margin-bottom: 15px; }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* --- SIDEBAR DESIGN (1:1 ElevenChime) --- */
+        .sidebar {
+            width: 260px;
+            background: var(--sidebar-bg);
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 24px 16px;
+            box-sizing: border-box;
+            z-index: 10;
+        }
+
+        .brand {
+            font-family: 'Outfit', sans-serif;
+            font-size: 22px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-left: 8px;
+            margin-bottom: 30px;
+            letter-spacing: -0.5px;
+        }
+        .brand i { color: #cbd5e1; font-size: 24px; }
+
+        .menu-section-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #475569;
+            font-weight: 700;
+            padding: 15px 0 8px 8px;
+        }
+
+        .menu-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .menu-link {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 12px 14px;
+            color: var(--text-muted);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 14px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        .menu-link:hover {
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--text-main);
+        }
+        .menu-link.active {
+            background: rgba(239, 68, 68, 0.08);
+            color: var(--accent-red);
+            font-weight: 600;
+            border-left: 3px solid var(--accent-red);
+            border-radius: 4px 8px 8px 4px;
+            padding-left: 11px;
+        }
+        .menu-link i { font-size: 16px; width: 20px; text-align: center; }
+
+        .signout-btn {
+            background: rgba(239, 68, 68, 0.1);
+            color: #f87171;
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: 0.2s;
+        }
+        .signout-btn:hover { background: var(--accent-red); color: white; }
+
+        /* --- MAIN CONTENT & REGULAR HEADER --- */
+        .workspace {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .top-navbar {
+            height: 70px;
+            border-bottom: 1px solid var(--border-color);
+            padding: 0 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #080f1a;
+        }
+
+        .page-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .top-nav-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .coin-pill {
+            background: rgba(14, 116, 144, 0.2);
+            border: 1px solid rgba(14, 116, 144, 0.4);
+            color: #22d3ee;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .settings-gear {
+            color: var(--text-muted);
+            font-size: 18px;
+            cursor: pointer;
+            transition: 0.2s;
+            padding: 8px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.02);
+        }
+        .settings-gear:hover { color: white; transform: rotate(45deg); }
+
+        .content-panel {
+            padding: 40px;
+            overflow-y: auto;
+            flex-grow: 1;
+            box-sizing: border-box;
+        }
+
+        /* TAB MANAGEMENT VISIBILITY */
+        .tab-content { display: none; }
+        .tab-content.active-tab { display: block; animation: fadeIn 0.3s ease; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- UI COMPONENT LAYOUTS --- */
+        .card-banner {
+            background: linear-gradient(90deg, rgba(239,68,68,0.05) 0%, rgba(15,23,42,0.4) 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 30px;
+        }
+        .card-banner h2 { margin: 0 0 8px 0; font-size: 20px; display: flex; align-items: center; gap: 10px; }
+        .card-banner p { margin: 0; color: var(--text-muted); font-size: 14px; }
+
+        /* Style grid view selector items */
+        .style-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 16px;
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+
+        .style-item {
+            background: #111a2e;
+            border: 2px solid transparent;
+            border-radius: 12px;
+            padding: 20px 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.2s;
+            position: relative;
+        }
+        .style-item:hover { border-color: rgba(255,255,255,0.1); background: #16223b; }
+        .style-item.selected {
+            border-color: #3b82f6;
+            background: rgba(59, 130, 246, 0.05);
+        }
+
+        .style-item i { font-size: 24px; margin-bottom: 12px; display: block; color: #64748b; }
+        .style-item.selected i { color: #3b82f6; }
+        .style-item .style-name { font-size: 13px; font-weight: 600; }
+        .style-badge {
+            position: absolute; top: -8px; right: -4px;
+            background: #f59e0b; color: #000; font-size: 9px; font-weight: 800;
+            padding: 2px 6px; border-radius: 4px; text-transform: uppercase;
+        }
+
+        /* Input Controls Setup */
+        label { font-size: 13px; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 10px; }
+        textarea, input[type="text"], select {
+            width: 100%; background: var(--input-bg); border: 1px solid var(--border-color);
+            border-radius: 8px; color: white; padding: 14px; box-sizing: border-box;
+            margin-bottom: 25px; font-family: inherit; font-size: 14px; transition: 0.2s;
+        }
+        textarea:focus, input[type="text"]:focus { border-color: #3b82f6; outline: none; }
+
+        .btn-action {
+            background: #10b981; color: white; border: none; padding: 14px 28px;
+            border-radius: 8px; font-weight: 600; font-size: 15px; cursor: pointer;
+            display: inline-flex; align-items: center; gap: 8px; transition: 0.2s;
+        }
+        .btn-action:hover { background: #059669; box-shadow: 0 4px 12px rgba(16,185,129,0.2); }
+
+        /* Prompt Feed Layout */
+        .prompt-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+        .prompt-card {
+            background: #0f172a; border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden;
+        }
+        .prompt-img-box {
+            width: 100%; height: 260px; background: #1e293b; display: flex; align-items: center; justify-content: center; color: #475569; font-size: 40px; position: relative;
+        }
+        .prompt-card-body { padding: 16px; }
+        .engine-badge { background: rgba(139, 92, 246, 0.15); color: #a78bfa; font-size: 11px; padding: 4px 8px; border-radius: 4px; font-weight: 600; display: inline-block; margin-bottom: 10px; }
     </style>
 </head>
 <body>
+
     <div class="sidebar">
-        <div class="brand"><i class="fa-solid fa-wand-magic-sparkles"></i> Waqas Studio</div>
-        <ul class="menu-items">
-            <li><a href="#" class="menu-link active"><i class="fa-solid fa-cubes"></i> AI Studio</a></li>
-        </ul>
-    </div>
-    <div class="main-content">
-        <div class="header">
-            <h1>Welcome back, Waqas Bhai 👋</h1>
-            <div style="background: rgba(239, 68, 68, 0.2); padding: 8px 16px; border-radius: 20px; font-size: 14px; color: #ff7b7b; font-weight: 600;">Pro Member</div>
+        <div>
+            <div class="brand"><i class="fa-solid fa-bars-staggered"></i> ElevenChime TTS</div>
+            
+            <ul class="menu-list">
+                <li><a class="menu-link active" onclick="switchTab('dashboard-tab', 'Dashboard', this)"><i class="fa-solid fa-house"></i> Dashboard</a></li>
+                <li><a class="menu-link" onclick="switchTab('orders-tab', 'My Orders', this)"><i class="fa-solid fa-file-invoice"></i> My Orders</a></li>
+            </ul>
+
+            <div class="menu-section-label">Studio Tools</div>
+            <ul class="menu-list">
+                <li><a class="menu-link" onclick="switchTab('tts-tab', 'Text to Speech', this)"><i class="fa-solid fa-microphone"></i> Text to Speech</a></li>
+                <li><a class="menu-link" onclick="switchTab('voices-tab', 'Voices Library', this)"><i class="fa-solid fa-folder-open"></i> Voices Library</a></li>
+                <li><a class="menu-link" onclick="switchTab('image-tab', 'Image Studio', this)"><i class="fa-solid fa-image"></i> Image Studio</a></li>
+                <li><a class="menu-link" onclick="switchTab('tools-tab', 'Free Tools', this)"><i class="fa-solid fa-toolbox"></i> Free Tools</a></li>
+                <li><a class="menu-link" onclick="switchTab('trending-tab', 'Trending AI Prompts', this)"><i class="fa-solid fa-fire"></i> Trending Prompts</a></li>
+            </ul>
+
+            <div class="menu-section-label">Account</div>
+            <ul class="menu-list">
+                <li><a class="menu-link" onclick="switchTab('refer-tab', 'Refer & Earn Credits', this)"><i class="fa-solid fa-share-nodes"></i> Refer & Earn</a></li>
+            </ul>
         </div>
-        <div class="studio-grid">
-            <div class="tool-box">
-                <div class="tool-title"><i class="fa-solid fa-volume-high" style="color: #3b82f6;"></i> AI Text To Speech</div>
-                <textarea rows="5" placeholder="Yahan apna text likhein jisko AI voice mein badalna hai..."></textarea>
-                <button class="btn" onclick="alert('AI Voice System Active!')">Generate Audio</button>
-            </div>
-            <div class="tool-box">
-                <div class="tool-title"><i class="fa-solid fa-image" style="color: #10b981;"></i> Studio Image Generator</div>
-                <input type="text" placeholder="Describe the image you want to create...">
-                <button class="btn" style="background: #10b981;" onclick="alert('AI Image System Active!')">Generate Image</button>
+
+        <a href="index.html" class="signout-btn"><i class="fa-solid fa-power-off"></i> Sign Out</a>
+    </div>
+
+    <div class="workspace">
+        <div class="top-navbar">
+            <h1 class="page-title" id="navbar-dynamic-title">Dashboard</h1>
+            <div class="top-nav-right">
+                <div class="coin-pill">
+                    <i class="fa-solid fa-database"></i> <span id="coin-count">4,328</span>
+                </div>
+                <i class="fa-solid fa-gear settings-gear" onclick="alert('Studio Settings Panel Coming Soon!')"></i>
             </div>
         </div>
+
+        <div class="content-panel">
+
+            <div id="dashboard-tab" class="tab-content active-tab">
+                <div class="card-banner" style="background: linear-gradient(90deg, rgba(59,130,246,0.1) 0%, transparent 100%); border-color: rgba(59,130,246,0.2);">
+                    <h2>Welcome to Waqas AI Studio Control Panel 👋</h2>
+                    <p>Select any studio creative micro-utility from the left pane configuration menu array to begin execution cycles.</p>
+                </div>
+            </div>
+
+            <div id="orders-tab" class="tab-content">
+                <p style="color: var(--text-muted);">No active billing pipeline tracks or historical render requests found under this profile key.</p>
+            </div>
+
+            <div id="tts-tab" class="tab-content">
+                <div class="card-banner">
+                    <h2><i class="fa-solid fa-volume-high" style="color:#ef4444;"></i> Ultra Fast Audio Streaming Engine</h2>
+                    <p>Converts synthetic standard raw inputs into expressive vocal parameters instantly.</p>
+                </div>
+                <label>Target Language Voice Node</label>
+                <select>
+                    <option>Urdu Custom Voice Node - Waqas Master Clone</option>
+                    <option>English US Voice Node - Adam Premium Narrative</option>
+                </select>
+                <label>Input Text Prompt Buffer</label>
+                <textarea rows="5" placeholder="Yahan apna text likhein jisko professional voice mein synthesize karna hai..."></textarea>
+                <button class="btn-action" style="background:#ef4444;" onclick="alert('Synthesizing audio nodes...')"><i class="fa-solid fa-play"></i> Generate Voice Asset</button>
+            </div>
+
+            <div id="voices-tab" class="tab-content">
+                <p style="color: var(--text-muted);">Your custom voice clone nodes configuration registry array is empty.</p>
+            </div>
+
+            <div id="image-tab" class="tab-content">
+                <div class="card-banner" style="background: linear-gradient(90deg, rgba(16,185,129,0.08) 0%, transparent 100%);">
+                    <h2><i class="fa-solid fa-bolt" style="color:#10b981;"></i> Ultra Fast Image Generation Engine</h2>
+                    <p>Generates high fidelity creative visual matrices in ~5 seconds using decentralized structural workers.</p>
+                </div>
+
+                <label>Select an AI Style Preset</label>
+                <div class="style-grid">
+                    <div class="style-item selected" onclick="selectStyle(this)">
+                        <i class="fa-solid fa-ban"></i>
+                        <div class="style-name">None</div>
+                    </div>
+                    <div class="style-item" onclick="selectStyle(this)">
+                        <i class="fa-solid fa-cubes"></i>
+                        <div class="style-name">Z Image Turbo</div>
+                    </div>
+                    <div class="style-item" onclick="selectStyle(this)">
+                        <i class="fa-solid fa-运营"></i>
+                        <div class="style-name">Nano Banana</div>
+                    </div>
+                    <div class="style-item" onclick="selectStyle(this)">
+                        <i class="fa-solid fa-crown" style="color:#f59e0b;"></i>
+                        <div class="style-name">Nano Banana Pro</div>
+                        <div class="style-badge">Pro</div>
+                    </div>
+                </div>
+
+                <label>Image Render Parameter Description</label>
+                <input type="text" placeholder="A flat-lay (top-down) shot. A perfume bottle resting on black rocks...">
+                <button class="btn-action" onclick="alert('Rendering graphics layout matrices...')"><i class="fa-solid fa-sparkles"></i> Render Creative Asset</button>
+            </div>
+
+            <div id="tools-tab" class="tab-content">
+                <p style="color: var(--text-muted);">Text Humanizer and structural cleaner modules currently indexing parameters.</p>
+            </div>
+
+            <div id="trending-tab" class="tab-content">
+                <div class="card-banner" style="background: linear-gradient(90deg, rgba(139,92,246,0.08) 0%, transparent 100%);">
+                    <h2><i class="fa-solid fa-fire" style="color:#a78bfa;"></i> Trending Open-Source Prompts</h2>
+                    <p>Explore reverse-engineered high performing prompting frameworks extracted by the global creator pool.</p>
+                </div>
+
+                <div class="prompt-grid">
+                    <div class="prompt-card">
+                        <div class="prompt-img-box"><i class="fa-solid fa-mug-hot"></i></div>
+                        <div class="prompt-card-body">
+                            <span class="engine-badge">DALL-E 3</span>
+                            <p style="font-size:13px; margin:0; color:#cbd5e1; font-style:italic;">"A beautiful desi dhabba layout with traditional elements, morning cinematic lighting, 8k render..."</p>
+                        </div>
+                    </div>
+                    <div class="prompt-card">
+                        <div class="prompt-img-box"><i class="fa-solid fa-shirt"></i></div>
+                        <div class="prompt-card-body">
+                            <span class="engine-badge" style="background:rgba(6,182,212,0.15); color:#22d3ee;">FLUX Node</span>
+                            <p style="font-size:13px; margin:0; color:#cbd5e1; font-style:italic;">"A studio fashion editorial catalog mockup shot, realistic model textile folds, dramatic overhead loop side-glow..."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="refer-tab" class="tab-content">
+                <p style="color: var(--text-muted);">Your custom affiliate reference payload link generation pipeline is locked.</p>
+            </div>
+
+        </div>
     </div>
-</body>
-</html>
+
+    <script>
+        function switchTab(tabId, titleText, element) {
+            // Hide all tab views
+            var contents = document.getElementsByClassName('tab-content');
+            for (var i = 0; i < contents.length; i++) {
+                contents[i].classList.remove('active-tab');
+            }
+            
+            // Remove active classes from left menu nodes
+            var links = document.getElementsByClassName('menu-link');
+            for (var j = 0; j < links.length; j++) {
+                links[j].classList.remove('active');
+            }
+
+            // Mount active components
+            document.getElementById(tabId).classList.add('active-tab');
+            element.classList.add('active');
+            
+            // Transform dynamic title
+            document.getElementById('navbar-dynamic-title').innerText = titleText;
+        }
+
+        function selectStyle(element) {
+            var items = document.getElementsByClassName('style-item');
+            for (var i = 0; i < items.length; i++) {
+                items[i].classList.remove('selected');
+            }
+            element.classList.add('selected');
+        }
+    </script>
