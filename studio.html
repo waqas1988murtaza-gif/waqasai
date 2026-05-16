@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Waqas AI Studio - Premium Dashboard</title>
+    <script>
+        if (localStorage.getItem("isLoggedIn") !== "true") {
+            window.location.href = "login.html";
+        }
+    </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -116,6 +121,7 @@
             justify-content: center;
             gap: 10px;
             transition: 0.2s;
+            cursor: pointer;
         }
         .signout-btn:hover { background: var(--accent-red); color: white; }
 
@@ -293,7 +299,7 @@
             </ul>
         </div>
 
-        <a href="index.html" class="signout-btn"><i class="fa-solid fa-power-off"></i> Sign Out</a>
+        <a onclick="handleSignOut()" class="signout-btn"><i class="fa-solid fa-power-off"></i> Sign Out</a>
     </div>
 
     <div class="workspace">
@@ -430,6 +436,12 @@
                 items[i].classList.remove('selected');
             }
             element.classList.add('selected');
+        }
+
+        // FIXED: Clear session cache and bounce back to login layout
+        function handleSignOut() {
+            localStorage.removeItem("isLoggedIn");
+            window.location.href = "login.html";
         }
     </script>
 </body>
