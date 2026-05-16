@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - Waqas AI Studio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #060b13;
+            --card-bg: #0b111e;
+            --accent-red: #ef4444;
+            --accent-hover: #dc2626;
+            --border-color: rgba(255, 255, 255, 0.06);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --input-bg: #020617;
+        }
+        body { background-color: var(--bg-color); color: var(--text-main); font-family: 'Inter', sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .login-card { background: var(--card-bg); border: 1px solid var(--border-color); padding: 40px; border-radius: 16px; width: 100%; max-width: 400px; box-sizing: border-box; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .brand { font-family: 'Outfit', sans-serif; font-size: 24px; font-weight: 800; text-align: center; margin-bottom: 24px; }
+        .brand i { color: var(--accent-red); margin-right: 8px; }
+        h2 { font-size: 20px; margin: 0 0 8px 0; text-align: center; font-family: 'Outfit', sans-serif; }
+        p { color: var(--text-muted); font-size: 14px; text-align: center; margin: 0 0 24px 0; }
+        label { font-size: 13px; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 8px; }
+        input[type="email"], input[type="password"] { width: 100%; background: var(--input-bg); border: 1px solid var(--border-color); padding: 12px 14px; border-radius: 8px; color: white; font-size: 14px; box-sizing: border-box; margin-bottom: 20px; font-family: inherit; }
+        input:focus { border-color: var(--accent-red); outline: none; }
+        .btn-login { width: 100%; background: var(--accent-red); color: white; border: none; padding: 14px; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; transition: 0.2s; }
+        .btn-login:hover { background: var(--accent-hover); box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2); }
+        .error-msg { color: #f87171; font-size: 13px; text-align: center; margin-bottom: 15px; display: none; }
+    </style>
+</head>
+<body>
+    <div class="login-card">
+        <div class="brand"><i class="fa-solid fa-wand-magic-sparkles"></i> Waqas AI Studio</div>
+        <h2>Welcome back</h2>
+        <p>Enter your studio credentials to access your control panel</p>
+        
+        <div class="error-msg" id="error-box">Invalid email or password!</div>
+        
+        <form id="login-form" onsubmit="handleLogin(event)">
+            <label>Email Address</label>
+            <input type="email" id="email" required placeholder="name@company.com">
+            
+            <label>Password</label>
+            <input type="password" id="password" required placeholder="••••••••">
+            
+            <button type="submit" class="btn-login">Sign In to Dashboard</button>
+        </form>
+    </div>
+
+    <script>
+        function handleLogin(event) {
+            event.preventDefault();
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+            
+            // Demo authentication logic (Aap apna customize kar sakte hain)
+            if(email === "admin@waqas.com" && password === "123456") {
+                // Session create karein taake studio secure ho sake
+                localStorage.setItem("isLoggedIn", "true");
+                window.location.href = "studio.html";
+            } else {
+                document.getElementById('error-box').style.display = "block";
+            }
+        }
+    </script>
+</body>
+</html>
